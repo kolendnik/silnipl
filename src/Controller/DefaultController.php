@@ -4,8 +4,9 @@ namespace App\Controller;
 
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class DefaultController
+class DefaultController extends AbstractController
 {
 
 	/**
@@ -14,6 +15,8 @@ class DefaultController
 
 	public function homePage()
 	{
-		return new Response('Home Page');
+		return $this->render('base.html.twig',[
+			'title'=>'title1'
+		]);
 	}
 }
