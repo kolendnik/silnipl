@@ -13,9 +13,15 @@ class BansController extends AbstractController
 	 */
 	public function showBansContent()
 	{
+		$bans = [
+			'arek1',
+			'player2',
+			'player3'
+		];
+
 		//return new Response('Lista banów tutaj!');
 		return $this->render('bans.html.twig',[
-			
+			'bans'=>$bans
 		]);
 	}
 }
