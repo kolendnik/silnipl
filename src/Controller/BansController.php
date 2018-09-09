@@ -62,7 +62,7 @@ class BansController extends AbstractController
 	public function deleteBan($id, EntityManagerInterface $em)
 	{
 		$rep = $em->getRepository(Ban::class);
-		$ban = $rep->findOneBy(['id'=>$id]);
+		$ban = $rep->findOneById($id);
 		if(!$ban)
 			throw $this->createNotFoundException(sprintf('No ban with id: %s',$id));
 
