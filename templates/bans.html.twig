@@ -5,8 +5,9 @@
 {% block body %} 
 
 <h2>Zbanowani ({{bans|length}}) :</h2>
+<ol>
 {% for ban in bans %}
-<p>{{ ban.name }}</p>
+	<li>{{ban.name}}</li>
 {% endfor %}
-
+</ol>
  {% endblock %}

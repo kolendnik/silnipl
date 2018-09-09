@@ -9,6 +9,8 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Ban;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
+
 
 class BansController extends AbstractController
 {
@@ -32,15 +34,42 @@ class BansController extends AbstractController
 	/**
 	 * @Route("/bans/add/",name="bans_add",methods={"POST"})
 	 */
-	public function addBan(EntityManagerInterface $em)
+	public function addBan(Request $request ,EntityManagerInterface $em)
 	{
+		
+		$banName = $request->request->get('name');
+		
 		$ban = new Ban();
-		$ban->setName('player_'.rand(1,100));
+		$ban->setName($banName);
 		$ban->setAddedBy('Arek');
 		$em->persist($ban);
 		$em->flush();
-		//$this->bans[] = $name;
+		//return $this->json($data);
 		return $this->json(['bans'=>['id'=>$ban->getId(),'name'=>$ban->getName()]]);
+	}
+
+
+	public function updateBan(Request $request, EntityManagerInterface $em)
+	{
+		die('TODO');
+	}
+
+
+	/**
+	 * @Route("/bans/delete/{id}",name="delete_ban",methods={"DELETE"})
+	 */
+
+	public function deleteBan($id, EntityManagerInterface $em)
+	{
+		$rep = $em->getRepository(Ban::class);
+		$ban = $rep->findOneBy(['id'=>$id]);
+		if(!$ban)
+			throw $this->createNotFoundException(sprintf('No ban with id: %s',$id));
+
+		$em->remove($ban);
+		$em->flush();
+
+		return $this->json(['msg'=>sprintf('ban with id: %s deleted',$id)]);
 	}
 
 }
