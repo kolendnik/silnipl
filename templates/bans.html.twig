@@ -2,16 +2,20 @@
 
 {% block title %}banList{% endblock %}
 
+{% block stylesheets %}
+{{parent()}}
+<link rel="stylesheet" type="text/css" href="{{ asset('css/bans/main.css') }}">
+{% endblock %}
+
 {% block body %} 
 
 <h2>Zbanowani ({{ bans|length }}): </h2>
 
-<table border>
+<table>
 <th>User</th>
 <th>Banujący</th>
 <th>Akcja</th>
 {% for ban in bans %}
-	<!--<div> {{ ban.name }} <button id="{{ban.id}}" class="ban-delete">Usuń</button>  </div>	-->
 	<tr>
 		<td>{{ban.name}}</td>
 		<td>{{ban.addedBy}}</td>
