@@ -23,7 +23,9 @@ class BansController extends AbstractController
 		$bans = $repository->findAll();
 
 		if(!$bans)
-			throw $this->createNotFoundException(sprintf('No bans'));
+			$bans = null;
+		//	throw $this->createNotFoundException(sprintf('No bans'));
+
 
 
 		return $this->render('bans.html.twig',[
@@ -70,6 +72,25 @@ class BansController extends AbstractController
 		$em->flush();
 
 		return $this->json(['msg'=>sprintf('ban with id: %s deleted',$id)]);
+	}
+
+	/**
+	 * @Route("/bans/add/fake",name="add_bans_fake",methods={"POST"})
+	 */
+
+	public function addMultipleFakeBans($quantity = 20,EntityManagerInterface $em)
+	{
+		for($i=0;$i<$quantity;$i++)
+		{
+			$ban = new Ban();
+			$ban->setName('player_'.rand(1,1000));
+			$ban->setAddedBy('Arek');
+			$em->persist($ban);
+		}
+		$em->flush();
+
+		return $this->json(['q'=>$quantity,'msg'=>sprintf('Dodano %s banów',$quantity)]);
+
 	}
 
 }
