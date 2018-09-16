@@ -8,7 +8,7 @@
 {% endblock %}
 
 {% block body %} 
-
+{{parent()}}
 <h2>Zbanowani ({{ bans|length }}): </h2>
 
 <table>
@@ -19,6 +19,7 @@
 	<tr>
 		<td>{{ban.name}}</td>
 		<td>{{ban.addedBy}}</td>
+		<td><a href="/bans/{{ban.id}}">Szczegóły</a></td>
 		<td><button id="{{ban.id}}" class="ban-delete">Usuń</button></td>
 	</tr>
 {% endfor %}
@@ -30,12 +31,7 @@
 <script>
 $(document).on('click', '.ban-delete',function(e){
 	e.preventDefault();
-
-
-
     var id = $(this).attr('id');
-
-
 fetch("http://localhost:8000/bans/delete/"+id,{
         method: "delete",
     })
@@ -53,6 +49,7 @@ fetch("http://localhost:8000/bans/delete/"+id,{
 
 e.stopImmediatePropagation();
 });
+
 
 </script>
 {% endblock %}

@@ -10,6 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Ban;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
+use App\Form\BansType;
 
 
 class BansController extends AbstractController
@@ -34,7 +35,25 @@ class BansController extends AbstractController
 	}
 
 	/**
-	 * @Route("/bans/add/",name="bans_add",methods={"POST"})
+	 * @Route("/bans/{id}",name="ban")
+	 */
+	public function showBanContent(Ban $ban,Request $request, EntityManagerInterface $em)
+	{
+		$form = $this->createForm(BansType::class,$ban);
+		$req = $form->handleRequest($request);
+		if($form->isSubmitted() && $form->isValid())
+		{
+			$em->flush();
+			return $this->redirectToRoute('ban_list');
+		}
+
+		return $this->render('banform.html.twig',[
+			'form'=>$form->createView()
+		]);
+	}
+
+	/**
+	 * @Route("/bans2/add/",name="bans_add",methods={"POST"})
 	 */
 	public function addBan(Request $request ,EntityManagerInterface $em)
 	{
@@ -90,6 +109,35 @@ class BansController extends AbstractController
 		$em->flush();
 
 		return $this->json(['q'=>$quantity,'msg'=>sprintf('Dodano %s banów',$quantity)]);
+
+	}
+
+
+	/**
+	 * @Route("/bans/add/",name="ban_form_add")
+	 */
+	public function banForm(Request $request, EntityManagerInterface $em)
+	{
+		$form = $this->createForm(BansType::class);
+		$form->handleRequest($request);
+		if ($form->isSubmitted() && $form->isValid()) {
+
+			$formData = $form->getData();
+			//dump($formData);
+
+			// insert/update
+			$ban = new Ban();
+			$ban->setName($formData->getName());
+			$ban->setAddedBy('ArekForm');
+			$em->persist($ban);
+			$em->flush();
+
+			return $this->redirectToRoute("ban_list");
+		}
+
+		return $this->render('banform.html.twig',[
+			'form'=>$form->createView()
+		]);
 
 	}
 

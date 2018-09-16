@@ -10,7 +10,27 @@
 
     </head>
     <body>
-        {% block body %}HomePage{% endblock %}
+        {% block body %}
+        <header>
+            <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+                <div class="container">
+
+                    <a class="navbar-brand" href="{{ path('homepage') }}">Home</a>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('ban_list') }}">Lista banów</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('ban_form_add') }}">Dodaj bana</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        {% endblock %}
 
         
         {% block javascripts %}

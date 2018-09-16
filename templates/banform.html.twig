@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}
+bany
+{% endblock %}
+
+{% block body %}
+{{parent()}}
+<div>
+{{ form_start(form) }}
+{{ form_widget(form) }}
+<input type="submit" value="Zapisz" />
+
+{{ form_end(form) }}
+</div>
+{% endblock %}
