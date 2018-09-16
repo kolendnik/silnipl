@@ -123,9 +123,6 @@ class BansController extends AbstractController
 		if ($form->isSubmitted() && $form->isValid()) {
 
 			$formData = $form->getData();
-			//dump($formData);
-
-			// insert/update
 			$ban = new Ban();
 			$ban->setName($formData->getName());
 			$ban->setAddedBy('ArekForm');
