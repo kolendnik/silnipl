@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Regulamin{% endblock %}
+
+{% block body %}
+{{parent()}}
+<div class="col-sm-12">
+
+
+<div id="newbies">
+ <br><b>I. Nowi Klanowicze:</b>
+ <ol>
+<li>Nowy klanowicz powinien najpierw dać minimum 30 Donates zanim sam poprosi o wojsko.</li>
+<li>Każdy nowy gracz ma obowiązek uczestnictwa w wojnie.</li>
+<li>Powinien mieć mniej więcej tylko samo Donatów ile wziętego wojska.</li>
+<li>Niestosowanie się do powyższych zasad grozi wydaleniem z klanu.</li>
+</ol>
+<br>
+</div>
+
+
+<div id="gracze">
+<b>II. Wszyscy członkowie:</b>
+<ol>
+<li>Nie klniemy, jesteśmy uprzejmi, towarzyscy i pomocni</li>
+<li>Nie spamujemy.</li>
+<li>Dajemy mniej więcej tyle samo wojska ile bierzemy, co najmniej 2 do 1 (np bierzesz 200, oddajesz 100)</li>
+<li>Dajemy tylko takie wojsko, o jakie ktoś poprosi lub inne jeśli wcześniej z nim to ustalimy.</li>
+<li>Myślimy o słabszych w klanie, jeśli tylko to możliwe nie żądamy określonego poziomu wojska (np. prosimy o Łuki, a nie Łuki lvl4)</li>
+<li>Prosimy maksymalnie o takie wojsko jakie sami jesteśmy wstanie dać (np. mam Łuki lvl4, nie proszę o lvl5). UWAGA: Zasada ta nie dotyczy wojska na wojnę!</li>
+<li>Wszyscy klanowicze muszą być aktywni w Wojnach Klanów!</li>
+<li>Jeśli gracz po starcie nowego sezonu przez kilka dni nie wykaże żadnej aktywności w klanie, lidze i Wojnach Klanów zostanie usunięty</li>
+<li>Jeśli ktoś zostanie wyrzucony nie może zostać ponownie przyjęty, chyba że Leader lub Co-Leadrzy postanowią inaczej.</li>
+<li>Każdy klanowicz w czasie trwania sezonu powinien dać minimum 200 donatów</li>
+<li>Niestosowanie się do powyższych zasad grozi wydaleniem z klanu.</li>
+	 <br><br>
+</ol></div>
+
+
+	 
+
+	 <div id="elders">
+	  <b>III. Elderzy:</b>
+	  <ol>
+<li>Do klanu przyjmujemy graczy z każdym LVL'em.</li>
+<li>Klanowicz, który nagminnie przeklina bądź obraża innych mimo próśb ma zostać wyrzucony z klanu.</li>
+<li>Każdy, który po wejściu do klanu reklamuje inne klany powinien dostać natychmiastowy "KICK".</li>
+<li>W innych przypadkach "wyrzucanie" graczy powinno być skonsultowane z Liderem lub Co-Leaderem.</li>
+<li>Nie wolno Elderom rozliczać innych graczy z ilości Donates/Requests - od tego są Leaderzy.</li>
+<li>Każdy Elder w czasie trwania sezonu powinien mieć co najmniej 300 donatów.</li>
+<li>Niestosowanie się do powyższych zasad grozi zdegradowaniem do rangi członka klanu.</li>
+</ol>
+	 <br>
+	 </div>
+	 
+	 <div id="wars">
+  <br><b>IV. Wojny Klanów:</b>
+  <ol>
+<li>Walczymy co 2 dni (tj. Preparation Day, Wojna, Dzień przerwy, Preparation Day, Wojna, Dzień przerwy itd.)</li>
+<li>Każdy gracz ma obowiązek uczestniczyć w wojnach klanów (dwie walki w każdej 24 godzinnej wojnie).</li>
+<li>Obowiązek jest utrzymany nawet jeśli jest już pewność, że wojna będzie przegrana! Ataki w takim przypadku należy wykorzystać do testowania nowych technik i podniesienia swojego doświadczenia.</li>
+<li>W PREPARATION DAY - 1-wszy dzień wojny (na mapie) Dajemy tylko wysokie poziomy wojska.</li>
+<li>Taktyka na wojnie ustalana jest przez lidera lub co leadera przed wojna, taktyka wysylana jest na skrzynke , w razie braku taktyki atakujeny swoj numer</li>
+<li>Atakujemy wroga tak aby zdobyć 3 gwiazdki w myśl zasady "Lepsze 3* na ostatnim niż 1* na pierwszym" (1* za zburzenie TownHall lub 50% zniszczeń, 2* za TH i ponad 50%, 3* za 100% zniszczeń).</li>
+<li>Niestosowanie się do tych zasad grozi wyrzuceniem z klanu.</li>
+		 <br>
+		 </ol></div>
+
+		 <div id="legend">
+		 <ul>
+<br><b>LEGENDA:</b>
+<li>Sezon - trwa dwa tygodnie, aby sprawdzić kiedy kończy się aktualny sezon wystarczy kliknąć ikonę pucharu w grze i na górze jest napisane: "Season ends in:...".</li>
+<li>Wojna Klanów - jedna wojna klanów trwa 24h, aby sprawdzić ile czasu zostało do końca aktualnej wojny kliknij w dwa skrzyżowane miecze. Na górze jest czas i ile walk Ci pozostało.</li>
+<li>Donaty - z ang. Donated, oddane wojsko innym w klanie widoczne w statystykach klanu "Troops donated".</li>
+</ul>
+</div>
+
+</div>
+
+{% endblock %}
