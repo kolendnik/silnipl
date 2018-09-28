@@ -2,8 +2,10 @@
 
 namespace App\Security;
 
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
@@ -15,17 +17,20 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
 {
     private $userRepository;
     private $router;
+    /**
+     * @var UserPasswordEncoder
+     */
+    private $userPasswordEncoder;
 
-    public function __construct(UserRepository $userRepository,RouterInterface $router)
+    public function __construct(UserRepository $userRepository,RouterInterface $router,UserPasswordEncoderInterface $userPasswordEncoder)
     {
         $this->userRepository = $userRepository;
         $this->router = $router;
+        $this->userPasswordEncoder = $userPasswordEncoder;
     }
 
     public function supports(Request $request)
     {
-        // todo
-        //die('BUSAUHSUAHUSHA');
         return $request->attributes->get('_route') === 'app_login' 
             && $request->isMethod('POST');
     }
@@ -51,16 +56,12 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
 
     public function getUser($credentials, UserProviderInterface $userProvider)
     {
-        // todo
-        //dd($credentials);
         return $this->userRepository->findOneBy(['username'=>$credentials['username']]);
     }
 
     public function checkCredentials($credentials, UserInterface $user)
     {
-        // todo
-        //dd($user);
-        return true;
+        return $this->userPasswordEncoder->isPasswordValid($user,$credentials['password']);
     }
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)

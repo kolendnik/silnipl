@@ -1,49 +1,61 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %} {{title}} {% endblock %}</title>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %} HomePage {% endblock %}</title>
 
-        {% block stylesheets %}
-        
-        {% endblock %}
+    {% block stylesheets %}
 
-    </head>
-    <body>
-        {% block body %}
-        <header>
-            <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-                <div class="container">
+    {% endblock %}
 
-                    <a class="navbar-brand" href="{{ path('homepage') }}">Home</a>
+</head>
+<body>
+{% block body %}
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+            <div class="container">
 
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav mr-auto">
+                <a class="navbar-brand" href="{{ path('homepage') }}">Home</a>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('app_terms') }}">Regulamin</a>
+                        </li>
+                        {% if app.user %}
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ path('ban_list') }}">Lista banów</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ path('ban_form_add') }}">Dodaj bana</a>
                             </li>
+
+
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ path('terms') }}">Regulamin</a>
+                                <a class="nav-link" href="{{ path('app_logout') }}">Wyloguj się</a>
+                            </li>
+                        {% elseif not app.user %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('app_registration') }}">Zarejestruj się</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ path('app_login') }}">Zaloguj</a>
                             </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-        </header>
-        {% endblock %}
 
-        
-        {% block javascripts %}
-        <script
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+{% endblock %}
+
+
+{% block javascripts %}
+    <script
             src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
             integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
             crossorigin="anonymous"></script>
-        {% endblock %}
-    </body>
+{% endblock %}
+</body>
 </html>
